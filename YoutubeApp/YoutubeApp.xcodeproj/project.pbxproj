@@ -37,6 +37,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD114D9D20C6A9D000C63878 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AD114D9E20C6A9DE00C63878 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3A18220C6A6B00052C66D /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AD114D9F20C6A9ED00C63878 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3A17E20C6A6B00052C66D /* FirstViewController.swift */,
+				ADF3A18020C6A6B00052C66D /* SecondViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		ADF3A17020C6A6B00052C66D = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +80,12 @@
 		ADF3A17B20C6A6B00052C66D /* YoutubeApp */ = {
 			isa = PBXGroup;
 			children = (
-				ADF3A17C20C6A6B00052C66D /* AppDelegate.swift */,
-				ADF3A17E20C6A6B00052C66D /* FirstViewController.swift */,
-				ADF3A18020C6A6B00052C66D /* SecondViewController.swift */,
-				ADF3A18220C6A6B00052C66D /* Main.storyboard */,
-				ADF3A18520C6A6B00052C66D /* Assets.xcassets */,
 				ADF3A18720C6A6B00052C66D /* LaunchScreen.storyboard */,
+				ADF3A17C20C6A6B00052C66D /* AppDelegate.swift */,
+				AD114D9D20C6A9D000C63878 /* Model */,
+				AD114D9E20C6A9DE00C63878 /* View */,
+				AD114D9F20C6A9ED00C63878 /* Controller */,
+				ADF3A18520C6A6B00052C66D /* Assets.xcassets */,
 				ADF3A18A20C6A6B00052C66D /* Info.plist */,
 			);
 			path = YoutubeApp;
