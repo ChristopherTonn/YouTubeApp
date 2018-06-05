@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ADB0191020C6E94700858726 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0190F20C6E94700858726 /* CellView.swift */; };
 		ADF3A17D20C6A6B00052C66D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF3A17C20C6A6B00052C66D /* AppDelegate.swift */; };
 		ADF3A17F20C6A6B00052C66D /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF3A17E20C6A6B00052C66D /* FeedVC.swift */; };
 		ADF3A18120C6A6B00052C66D /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF3A18020C6A6B00052C66D /* SecondViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ADB0190F20C6E94700858726 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		ADF3A17920C6A6B00052C66D /* YoutubeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF3A17C20C6A6B00052C66D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADF3A17E20C6A6B00052C66D /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
@@ -37,6 +39,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD0BB4DF20C6EFD00067E7FA /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				ADF3A17E20C6A6B00052C66D /* FeedVC.swift */,
+				ADB0190F20C6E94700858726 /* CellView.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
 		AD114D9D20C6A9D000C63878 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -55,7 +66,7 @@
 		AD114D9F20C6A9ED00C63878 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				ADF3A17E20C6A6B00052C66D /* FeedVC.swift */,
+				AD0BB4DF20C6EFD00067E7FA /* Feed */,
 				ADF3A18020C6A6B00052C66D /* SecondViewController.swift */,
 			);
 			path = Controller;
@@ -163,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADB0191020C6E94700858726 /* CellView.swift in Sources */,
 				ADF3A18120C6A6B00052C66D /* SecondViewController.swift in Sources */,
 				ADF3A17D20C6A6B00052C66D /* AppDelegate.swift in Sources */,
 				ADF3A17F20C6A6B00052C66D /* FeedVC.swift in Sources */,
