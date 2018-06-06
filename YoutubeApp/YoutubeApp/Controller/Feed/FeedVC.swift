@@ -12,6 +12,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     
     //Vars
+    var videos:[Video] = [Video]()
     
     //Outlets
     @IBOutlet weak var feedTableView: UITableView!
@@ -28,6 +29,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         
         feedTableView.dataSource = self
         feedTableView.delegate = self
+        
+        self.videos = DataService().getStaticVideos()
     }
 
     override func didReceiveMemoryWarning() {

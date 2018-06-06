@@ -38,9 +38,12 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Nl-as-z85">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" highlightedImage="clem-onojeghuo" translatesAutoresizingMaskIntoConstraints="NO" id="kiZ-O0-pjb">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlightedImage="clem-onojeghuo" translatesAutoresizingMaskIntoConstraints="NO" id="kiZ-O0-pjb">
                                                             <rect key="frame" x="8" y="8" width="359" height="195"/>
                                                             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="195" id="XGx-MW-TlQ"/>
+                                                            </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TEST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIf-Vv-IPO">
                                                             <rect key="frame" x="8" y="206" width="359" height="36"/>
