@@ -11,16 +11,6 @@ import UIKit
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     
-    
-    
-    
-    
-    
-    
-   
-    
-    
-    
     //Vars
     
     //Outlets

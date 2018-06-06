@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1BB499744B1103E7755C0D16 /* Pods_YoutubeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB0B71311507EBDE34A9851 /* Pods_YoutubeApp.framework */; };
 		AD0BB4E120C6F7BD0067E7FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD0BB4E020C6F7BC0067E7FA /* GoogleService-Info.plist */; };
+		AD269C1720C825060015D086 /* ShowVideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD269C1620C825060015D086 /* ShowVideoVC.swift */; };
 		ADB0191020C6E94700858726 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB0190F20C6E94700858726 /* CellView.swift */; };
 		ADF3A17D20C6A6B00052C66D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF3A17C20C6A6B00052C66D /* AppDelegate.swift */; };
 		ADF3A17F20C6A6B00052C66D /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF3A17E20C6A6B00052C66D /* FeedVC.swift */; };
@@ -22,6 +23,7 @@
 		4DB0B71311507EBDE34A9851 /* Pods_YoutubeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YoutubeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC31E0DBE69B6080F36E3CE5 /* Pods-YoutubeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YoutubeApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-YoutubeApp/Pods-YoutubeApp.release.xcconfig"; sourceTree = "<group>"; };
 		AD0BB4E020C6F7BC0067E7FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AD269C1620C825060015D086 /* ShowVideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowVideoVC.swift; sourceTree = "<group>"; };
 		ADB0190F20C6E94700858726 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		ADF3A17920C6A6B00052C66D /* YoutubeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF3A17C20C6A6B00052C66D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				AD0BB4DF20C6EFD00067E7FA /* Feed */,
+				AD269C1620C825060015D086 /* ShowVideoVC.swift */,
 				ADF3A18020C6A6B00052C66D /* SecondViewController.swift */,
 			);
 			path = Controller;
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADB0191020C6E94700858726 /* CellView.swift in Sources */,
+				AD269C1720C825060015D086 /* ShowVideoVC.swift in Sources */,
 				ADF3A18120C6A6B00052C66D /* SecondViewController.swift in Sources */,
 				ADF3A17D20C6A6B00052C66D /* AppDelegate.swift in Sources */,
 				ADF3A17F20C6A6B00052C66D /* FeedVC.swift in Sources */,
