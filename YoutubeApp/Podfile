@@ -8,6 +8,7 @@ target 'YoutubeApp' do
   # Pods for YoutubeApp
 	
 	pod 'Firebase/Core'
+    pod 'Alamofire'
 
 
 
