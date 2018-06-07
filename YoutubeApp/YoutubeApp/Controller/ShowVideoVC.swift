@@ -12,11 +12,14 @@ class ShowVideoVC: UIViewController {
    
     
     //Vars
+    var selectedVideo:Video?
     
     //Outlets
     
+    @IBOutlet weak var videoTitleLabel: UILabel!
     @IBOutlet weak var videoWebView: UIWebView!
-    @IBOutlet weak var commentsScrollView: UIScrollView!
+    @IBOutlet weak var commentTextLabel: UILabel!
+    
     
     //Actions
     
@@ -26,7 +29,7 @@ class ShowVideoVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -35,15 +38,17 @@ class ShowVideoVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        
+        //If you get the selected Video Data put it in the UI Fields, Else Print a Message and return
+        if let vid = self.selectedVideo{
+            self.videoTitleLabel.text = vid.videoTitle
+            self.commentTextLabel.text = vid.videoComments
+        }else{
+            print("Chris: Vid dont get the Data. 😱")
+            return
+        }
     }
-    */
 
+    
 }

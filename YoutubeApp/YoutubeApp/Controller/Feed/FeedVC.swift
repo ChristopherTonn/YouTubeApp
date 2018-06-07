@@ -13,6 +13,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     //Vars
     var videos:[Video] = [Video]()
+    var selectedVideo:Video?
     
     //Outlets
     @IBOutlet weak var feedTableView: UITableView!
@@ -42,14 +43,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-//        let videoTitle = videos[indexPath.row].videoTitle
-        
         // Present the Cell View
         if let cell = feedTableView.dequeueReusableCell(withIdentifier: "CellView") as? CellView{
-            
-//            cell.textLabel?.text = videoTitle
-            
+   
             // Get the Video from the Array
             let video:Video = videos[indexPath.row]
             // Push Data to the Cell View
@@ -60,7 +56,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
             print("Chris: CellView Error. 😱")
             return CellView()
         }
-        
     }
     
     
@@ -73,9 +68,24 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        
-            return videos.count
+        return videos.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Wich video is selected
+        self.selectedVideo = self.videos[indexPath.row]
+        //Call the Segue
+        self.performSegue(withIdentifier: "goToShowVideo", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //Make a refferenc to ShowView
+        guard let showVideoVC = segue.destination as? ShowVideoVC else {return}
+        //give the reff the video property
+        showVideoVC.selectedVideo = self.selectedVideo
     }
 
+  
+    
 
 }

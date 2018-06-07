@@ -73,7 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				ADF3A17E20C6A6B00052C66D /* FeedVC.swift */,
-				ADB0190F20C6E94700858726 /* CellView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -90,6 +89,7 @@
 		AD114D9E20C6A9DE00C63878 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ADB0190F20C6E94700858726 /* CellView.swift */,
 				ADF3A18220C6A6B00052C66D /* Main.storyboard */,
 			);
 			path = View;
