@@ -10,6 +10,9 @@ import UIKit
 
 class DataService: NSObject {
     
+    //Get Data from the Youtube Api
+    
+    
     //Create a Static Video Obj and push it into a Array.
     func getStaticVideos() -> [Video]{
     
