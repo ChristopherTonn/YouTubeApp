@@ -31,7 +31,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         feedTableView.dataSource = self
         feedTableView.delegate = self
         
-        self.videos = DataService().getStaticVideos()
+        //Get the Videos
+//        self.videos = DataService().getStaticVideos()
+        DataService().getDynamicVideos()
     }
 
     override func didReceiveMemoryWarning() {
