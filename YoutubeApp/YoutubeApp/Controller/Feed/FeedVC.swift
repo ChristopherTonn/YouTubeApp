@@ -41,15 +41,28 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     //---Table View---
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+//        let videoTitle = videos[indexPath.row].videoTitle
+        
+        // Present the Cell View
         if let cell = feedTableView.dequeueReusableCell(withIdentifier: "CellView") as? CellView{
-//        cell.textLabel?.text = "Titel"
-        return cell
+            
+//            cell.textLabel?.text = videoTitle
+            
+            // Get the Video from the Array
+            let video:Video = videos[indexPath.row]
+            // Push Data to the Cell View
+            cell.titelLabel?.text = video.videoTitle
+            
+            return cell
         }else{
             print("Chris: CellView Error. 😱")
             return CellView()
-
         }
+        
     }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -59,7 +72,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
    
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 5
+        
+        
+            return videos.count
     }
 
 
