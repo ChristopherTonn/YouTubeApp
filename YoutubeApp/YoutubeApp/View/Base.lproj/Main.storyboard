@@ -73,6 +73,7 @@
                                         <connections>
                                             <outlet property="thumbImg" destination="kiZ-O0-pjb" id="BCc-Ve-z2H"/>
                                             <outlet property="titelLabel" destination="eIf-Vv-IPO" id="9ao-Uz-wK6"/>
+                                            <segue destination="mgT-js-Af2" kind="show" id="SsH-k3-vp9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -87,14 +88,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <navigationItem key="navigationItem" id="frm-hz-N25"/>
                     <connections>
                         <outlet property="feedTableView" destination="lf1-BS-IOM" id="PdZ-6r-WVb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="941.60000000000002" y="-391.75412293853077"/>
+            <point key="canvasLocation" x="942" y="-426"/>
         </scene>
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
@@ -140,13 +141,49 @@
                     <view key="view" contentMode="scaleToFill" id="A6R-bT-wWj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="95x-pM-rsT">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <subviews>
+                                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fr3-2d-DYs">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="184"/>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </webView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="comments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2E-tO-epV">
+                                        <rect key="frame" x="147" y="184" width="81" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="highlightedColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6in-ZP-QsB">
+                                        <rect key="frame" x="0.0" y="204.5" width="375" height="349.5"/>
+                                    </scrollView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Fr3-2d-DYs" firstAttribute="leading" secondItem="95x-pM-rsT" secondAttribute="leading" id="GA9-wr-CLa"/>
+                                    <constraint firstItem="y2E-tO-epV" firstAttribute="top" secondItem="Fr3-2d-DYs" secondAttribute="bottom" id="Lbw-Uv-eGD"/>
+                                    <constraint firstAttribute="trailing" secondItem="Fr3-2d-DYs" secondAttribute="trailing" id="MOg-rP-NAX"/>
+                                    <constraint firstItem="Fr3-2d-DYs" firstAttribute="top" secondItem="95x-pM-rsT" secondAttribute="top" id="xYu-gP-JsU"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="95x-pM-rsT" firstAttribute="trailing" secondItem="lWh-ky-m0C" secondAttribute="trailing" id="Vrt-EI-kb6"/>
+                            <constraint firstItem="95x-pM-rsT" firstAttribute="top" secondItem="lWh-ky-m0C" secondAttribute="top" id="epu-QR-hgQ"/>
+                            <constraint firstItem="95x-pM-rsT" firstAttribute="bottom" secondItem="lWh-ky-m0C" secondAttribute="bottom" id="feh-Hf-fqB"/>
+                            <constraint firstItem="95x-pM-rsT" firstAttribute="leading" secondItem="lWh-ky-m0C" secondAttribute="leading" id="rBv-Fx-NRz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="lWh-ky-m0C"/>
                     </view>
+                    <connections>
+                        <outlet property="commentsScrollView" destination="6in-ZP-QsB" id="3fB-AG-2E0"/>
+                        <outlet property="videoWebView" destination="Fr3-2d-DYs" id="62d-53-64q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bGO-0m-bMV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1828" y="0.0"/>
+            <point key="canvasLocation" x="1893.5999999999999" y="-0.44977511244377816"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -158,13 +195,32 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="dHi-Zl-Woj" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--First-->
+        <scene sceneID="BXh-Ff-kfr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dHi-Zl-Woj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="74x-i1-BFY">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="5tm-WR-E8c"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XC5-5W-iYc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="942" y="-1194"/>
         </scene>
     </scenes>
     <resources>

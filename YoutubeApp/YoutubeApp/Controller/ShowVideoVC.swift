@@ -9,6 +9,20 @@
 import UIKit
 
 class ShowVideoVC: UIViewController {
+   
+    
+    //Vars
+    
+    //Outlets
+    
+    @IBOutlet weak var videoWebView: UIWebView!
+    @IBOutlet weak var commentsScrollView: UIScrollView!
+    
+    //Actions
+    
+    
+    //Methods
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
