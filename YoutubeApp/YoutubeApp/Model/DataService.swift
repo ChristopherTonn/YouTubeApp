@@ -11,8 +11,12 @@ import Alamofire
 
 class DataService: NSObject {
     
+    //Constants for ID's and KEY's
     let API_KEY = "AIzaSyAaIP2crxxz2IfhhrnglS6mngqBuSuIM4w"
     let PLAYLIST_ID = "PL66OD4JjS_2PX2af0PdORJbVwcw9XE01M"
+    
+    //Global Video Array
+    var videoArray = [Video]()
     
     //Get Data from the Youtube Api
     func getDynamicVideos(){
@@ -28,10 +32,27 @@ class DataService: NSObject {
                             //Get the JSON Obj as DIc
                             if let JSON = response.result.value as? [String: Any]{
                                 
+                                //Local Video Array
+                                var aForLocalVideo = [Video]()
+                                
                                 //Loop thru the Items
                                 for video in JSON["items"] as! NSArray{
-                                    print("Chris: \(video) ")
+                                    
+                                    //Make a Video Obj
+                                    let videoObj = Video()
+                                    videoObj.videoId = (video as AnyObject).value(forKeyPath:"snippet.resourceId.videoId") as! String
+                                    videoObj.videoTitle = (video as AnyObject).value(forKeyPath:"snippet.title") as! String
+                                    videoObj.videoThumbnail = (video as AnyObject).value(forKeyPath:"snippet.thumbnails.high.url") as! String
+                                    
+                                    aForLocalVideo.append(videoObj)
                                 }
+                                
+                                self.videoArray = aForLocalVideo
+                                print("Chris: \(self.videoArray)")
+                                
+                            }else{
+                                print("Chris: Houston wir haben ein problem. We Don't get the Data.")
+                                return
                             }
         }
     }
