@@ -9,6 +9,13 @@
 import UIKit
 import Alamofire
 
+
+protocol DataServiceDelegate{
+    
+    //Checking for the Data
+   func dataIsReady()
+}
+
 class DataService: NSObject {
     
     //Constants for ID's and KEY's
@@ -17,6 +24,9 @@ class DataService: NSObject {
     
     //Global Video Array
     var videoArray = [Video]()
+    
+    //DataService Delegate var
+    var delegate:DataServiceDelegate?
     
     //Get Data from the Youtube Api
     func getDynamicVideos(){
@@ -29,7 +39,7 @@ class DataService: NSObject {
                           encoding: URLEncoding.default).responseJSON {
                             (response) -> Void in
                             
-                            //Get the JSON Obj as DIc
+                            //Get the JSON Obj as Dic
                             if let JSON = response.result.value as? [String: Any]{
                                 
                                 //Local Video Array
@@ -47,6 +57,7 @@ class DataService: NSObject {
                                     aForLocalVideo.append(videoObj)
                                 }
                                 
+                                //Put the Local Array to the Global Array
                                 self.videoArray = aForLocalVideo
                                 print("Chris: \(self.videoArray)")
                                 
@@ -54,8 +65,16 @@ class DataService: NSObject {
                                 print("Chris: Houston wir haben ein problem. We Don't get the Data.")
                                 return
                             }
+                            
+                            //Notify the delegate if data is ready
+                            if self.delegate != nil {
+                                 self.delegate!.dataIsReady()
+                            }
         }
     }
+    
+    
+    
     
     //Create a Static Video Obj and push it into a Array.
     func getStaticVideos() -> [Video]{
@@ -67,7 +86,7 @@ class DataService: NSObject {
         let video1 = Video()
     
         // Add properties to the Obj
-        video1.videoId = "sdsjv345bcfd"
+        video1.videoId = "uVteeLDOlyk"
         video1.videoTitle = "Static Data Test"
         video1.videoComments = "Static Comments Test"
         

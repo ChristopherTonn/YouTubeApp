@@ -8,12 +8,15 @@
 
 import UIKit
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DataServiceDelegate{
+    
+    
     
     
     //Vars
     var videos:[Video] = [Video]()
     var selectedVideo:Video?
+    let ds:DataService = DataService()
     
     //Outlets
     @IBOutlet weak var feedTableView: UITableView!
@@ -33,12 +36,22 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         
         //Get the Videos
 //        self.videos = DataService().getStaticVideos()
-        DataService().getDynamicVideos()
+        ds.getDynamicVideos()
+        
+        self.ds.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //---Data Service Delegate---
+    //Check the Data
+    func dataIsReady(){
+        self.videos = self.ds.videoArray
+        self.feedTableView.reloadData()
     }
 
     //---Table View---
@@ -46,19 +59,42 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Present the Cell View
-        if let cell = feedTableView.dequeueReusableCell(withIdentifier: "CellView") as? CellView{
+        let cell = feedTableView.dequeueReusableCell(withIdentifier: "CellView")!
    
-            // Get the Video from the Array
-            let video:Video = videos[indexPath.row]
-            // Push Data to the Cell View
-            cell.titelLabel?.text = video.videoTitle
+        // Get the Video from the Array
+        let videoTitel = videos[indexPath.row].videoTitle
+        
+        let label = cell.viewWithTag(2) as! UILabel
+        label.text = videoTitel
+//        // Push Data to the Cell View
+//        cell.textLabel?.text = videos.videoTitle
+        
+        // Create a NSURL Object
+
+        let videoThumbnailUrlString = videos[indexPath.row].videoThumbnail
+        let videoThumbnailUrl = URL(string: videoThumbnailUrlString)
+        //Create NSURL Request
+        if videoThumbnailUrl != nil {
+            let request = URLRequest(url: videoThumbnailUrl!)
+            let session = URLSession.shared
+            // Create a datatask and pass in the request
+            let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data:Data?, response:URLResponse?, error:Error?) in
+                
+                DispatchQueue.main.async {
+                    
+                    // Get a reference to the imageview element fo the cell
+                    let imageView = cell.viewWithTag(1) as! UIImageView
+                    // Create an image object from the data and asign it into the imageview
+                    imageView.image = UIImage(data: data!)
+                }
+            })
+            dataTask.resume()
             
-            return cell
-        }else{
-            print("Chris: CellView Error. 😱")
-            return CellView()
         }
-    }
+        return cell
+}
+        
+   
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -91,3 +127,4 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
 
 }
+
