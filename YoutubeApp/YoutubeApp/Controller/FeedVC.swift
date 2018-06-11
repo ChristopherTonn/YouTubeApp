@@ -11,8 +11,6 @@ import UIKit
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DataServiceDelegate{
     
     
-    
-    
     //Vars
     var videos:[Video] = [Video]()
     var selectedVideo:Video?
@@ -29,24 +27,17 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Data
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         feedTableView.dataSource = self
         feedTableView.delegate = self
         
         //Get the Videos
-//        self.videos = DataService().getStaticVideos()
+        //self.videos = DataService().getStaticVideos() //For Static Data
         ds.getDynamicVideos()
-        
         self.ds.delegate = self
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     //---Data Service Delegate---
     //Check the Data
     func dataIsReady(){
@@ -57,6 +48,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Data
     //---Table View---
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         
         // Present the Cell View
         let cell = feedTableView.dequeueReusableCell(withIdentifier: "CellView")!
@@ -69,11 +61,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Data
 //        // Push Data to the Cell View
 //        cell.textLabel?.text = videos.videoTitle
         
-        // Create a NSURL Object
+        // Create a URL Object
 
         let videoThumbnailUrlString = videos[indexPath.row].videoThumbnail
         let videoThumbnailUrl = URL(string: videoThumbnailUrlString)
-        //Create NSURL Request
+        //Create URL Request
+      
         if videoThumbnailUrl != nil {
             let request = URLRequest(url: videoThumbnailUrl!)
             let session = URLSession.shared
@@ -92,20 +85,18 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Data
             
         }
         return cell
-}
+    }
         
-   
+  
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         return 1
     }
     
    
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return videos.count
     }
     
@@ -127,4 +118,5 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Data
     
 
 }
+
 
