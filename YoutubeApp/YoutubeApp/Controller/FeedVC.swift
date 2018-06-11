@@ -43,7 +43,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Data
     func creatSearchBar(){
         
         let searchBar = UISearchBar()
-        searchBar.showsCancelButton = true
+        searchBar.showsCancelButton = false
         searchBar.placeholder = "Enter Video Title"
         searchBar.delegate = self
         
