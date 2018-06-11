@@ -185,11 +185,11 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--First-->
+        <!--HOME-->
         <scene sceneID="BXh-Ff-kfr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dHi-Zl-Woj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="HOME" image="first" landscapeImage="first" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="74x-i1-BFY">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
