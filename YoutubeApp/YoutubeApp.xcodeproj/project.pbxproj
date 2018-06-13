@@ -84,13 +84,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		AD114D9F20C6A9ED00C63878 /* Controller */ = {
+		AD114D9F20C6A9ED00C63878 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				AD269C1C20CE63F30015D086 /* FeedVC.swift */,
 				AD269C1620C825060015D086 /* ShowVideoVC.swift */,
 			);
-			path = Controller;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		AD269C1E20CE655C0015D086 /* Service */ = {
@@ -127,7 +127,7 @@
 				AD269C1E20CE655C0015D086 /* Service */,
 				AD114D9D20C6A9D000C63878 /* Model */,
 				AD114D9E20C6A9DE00C63878 /* View */,
-				AD114D9F20C6A9ED00C63878 /* Controller */,
+				AD114D9F20C6A9ED00C63878 /* ViewController */,
 				ADF3A18520C6A6B00052C66D /* Assets.xcassets */,
 				ADF3A18A20C6A6B00052C66D /* Info.plist */,
 				AD0BB4E020C6F7BC0067E7FA /* GoogleService-Info.plist */,

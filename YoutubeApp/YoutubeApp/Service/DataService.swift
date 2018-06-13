@@ -18,6 +18,8 @@ protocol DataServiceDelegate{
 
 class DataService: NSObject {
     
+    //Vars/Lets
+   
     //Constants for ID's and KEY's
     let API_KEY = "AIzaSyAaIP2crxxz2IfhhrnglS6mngqBuSuIM4w"
     let PLAYLIST_ID = "PL66OD4JjS_2PX2af0PdORJbVwcw9XE01M"
@@ -25,10 +27,17 @@ class DataService: NSObject {
     //Global Video Array
     var videoArray = [Video]()
     
+    //Temporary Video Array
+    var temporaryVideoArray = [Video]()
+    
     //DataService Delegate var
     var delegate:DataServiceDelegate?
     
-    //Get Data from the Youtube Api
+    
+    
+    //Methods
+    
+    //--Get Data from the Youtube Api
     func getDynamicVideos(){
         //Make a GET Request
         Alamofire.request("https://www.googleapis.com/youtube/v3/playlistItems",
@@ -40,43 +49,47 @@ class DataService: NSObject {
                             (response) -> Void in
                             
                             //Get the JSON Obj as Dic
-                            if let JSON = response.result.value as? [String: Any]{
-                                
-                                //Local Video Array
-                                var aForLocalVideo = [Video]()
-                                
-                                //Loop thru the Items
-                                for video in JSON["items"] as! NSArray{
-                                    
-                                    //Make a Video Obj
-                                    let videoObj = Video()
-                                    videoObj.videoId = (video as AnyObject).value(forKeyPath:"snippet.resourceId.videoId") as! String
-                                    videoObj.videoTitle = (video as AnyObject).value(forKeyPath:"snippet.title") as! String
-                                    videoObj.videoThumbnail = (video as AnyObject).value(forKeyPath:"snippet.thumbnails.high.url") as! String
-                                    
-                                    aForLocalVideo.append(videoObj)
-                                }
-                                
-                                //Put the Local Array to the Global Array
-                                self.videoArray = aForLocalVideo
-                                print("Chris: \(self.videoArray)")
-                                
-                            }else{
-                                print("Chris: Houston wir haben ein problem. We Don't get the Data.")
-                                return
-                            }
+                            guard let JSON = response.result.value as? [String: Any] else {return}
                             
+                            //Loop thru the Items
+                            self.loopItemsInToArray(JSON: JSON)
+
                             //Notify the delegate if data is ready
                             if self.delegate != nil {
                                  self.delegate!.dataIsReady()
+                            }else{
+                                print("Chris: The Data is not Ready.")
+                                return
                             }
         }
+        
+    }
+    
+    //Loop thru the Items and create for each a video object. After this put it in Global Array
+    func loopItemsInToArray(JSON: [String: Any]){
+        //Loop thru the Items
+        for video in JSON["items"] as! NSArray{
+            //Make a Video Obj
+            self.createVideoObj(video: video)
+        }
+        //Put the temporary Array to the Global Array
+        self.videoArray = self.temporaryVideoArray
+    }
+    
+    //Create a Video Obj
+    func createVideoObj(video: Any){
+        let videoObj = Video()
+        videoObj.videoId = (video as AnyObject).value(forKeyPath:"snippet.resourceId.videoId") as! String
+        videoObj.videoTitle = (video as AnyObject).value(forKeyPath:"snippet.title") as! String
+        videoObj.videoThumbnail = (video as AnyObject).value(forKeyPath:"snippet.thumbnails.high.url") as! String
+        
+        temporaryVideoArray.append(videoObj)
     }
     
     
     
     
-    //Create a Static Video Obj and push it into a Array.
+    //--Create a Static Video Obj and push it into a Array.
     func getStaticVideos() -> [Video]{
      
         // Create a Array for Videos

@@ -8,10 +8,7 @@
 
 import UIKit
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, DataServiceDelegate, UISearchBarDelegate{
-    
-    
-    
+class FeedVC: UIViewController, DataServiceDelegate, UISearchBarDelegate{
     
     //Vars
     var videos:[Video] = [Video]()
@@ -62,9 +59,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Data
         }
         self.feedTableView?.reloadData()
     }
-    
-    
-
 
     //---Data Service Delegate---
     
@@ -75,24 +69,20 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Data
         self.feedTableView?.reloadData()
     }
 
-    //---Table View---
+    //---Create Segue to SchowVideo---
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //Make a refferenc to ShowView
+        guard let showVideoVC = segue.destination as? ShowVideoVC else {return}
+        //give the reff the video property
+        showVideoVC.selectedVideo = self.selectedVideo
+    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        // Present the Cell View
-        let cell = feedTableView.dequeueReusableCell(withIdentifier: "CellView")!
-   
-        // Get the Video from the Array
-        let videoTitel = self.filterdVideos[indexPath.row].videoTitle
-        
-        let label = cell.viewWithTag(2) as! UILabel
-        label.text = videoTitel
 
-        // Create a URL Object
-        let videoThumbnailUrlString = self.filterdVideos[indexPath.row].videoThumbnail
-        let videoThumbnailUrl = URL(string: videoThumbnailUrlString)
-        //Create URL Request
-      
+    //---Create URL Request---
+    func createUrlRequest(thmbUrl: URL?, cell: Any){
+        
+        let videoThumbnailUrl = thmbUrl
+        
         if videoThumbnailUrl != nil {
             let request = URLRequest(url: videoThumbnailUrl!)
             let session = URLSession.shared
@@ -102,23 +92,50 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Data
                 DispatchQueue.main.async {
                     
                     // Get a reference to the imageview element fo the cell
-                    let imageView = cell.viewWithTag(1) as! UIImageView
+                    let imageView = (cell as AnyObject).viewWithTag(1) as! UIImageView
                     // Create an image object from the data and asign it into the imageview
                     imageView.image = UIImage(data: data!)
                 }
             })
+            //Bring it back to the Main Thread.
             dataTask.resume()
             
         }
+    }
+
+}
+
+
+//---Table View---
+extension FeedVC: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Present the Cell View
+        let cell = feedTableView.dequeueReusableCell(withIdentifier: "CellView")!
+        
+        // Get the Video from the Array
+        let videoTitel = self.filterdVideos[indexPath.row].videoTitle
+        
+        let label = cell.viewWithTag(2) as! UILabel
+        label.text = videoTitel
+        
+        // Create a URL Object
+        let videoThumbnailUrlString = self.filterdVideos[indexPath.row].videoThumbnail
+        let videoThumbnailUrl = URL(string: videoThumbnailUrlString)
+        
+        //Create URL Request
+        createUrlRequest(thmbUrl: videoThumbnailUrl!, cell: cell)
+        
         return cell
     }
-        
-  
+    
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-   
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return filterdVideos.count
@@ -131,14 +148,5 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Data
         //Call the Segue
         self.performSegue(withIdentifier: "goToShowVideo", sender: self)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //Make a refferenc to ShowView
-        guard let showVideoVC = segue.destination as? ShowVideoVC else {return}
-        //give the reff the video property
-        showVideoVC.selectedVideo = self.selectedVideo
-    }
-
 }
-
 
